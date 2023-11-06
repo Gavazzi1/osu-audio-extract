@@ -15,7 +15,7 @@ for i in *.osz; do
     songname="$(grep Title: tmp/*.osu | head -n 1 | rev | cut -d':' -f1 | rev)"
     songname="$(echo $songname | xargs)"
     songname="$(echo $songname | rev | cut -c2- | rev)"
-    ext="$(echo $audiofn | cut -d'.' -f2)"
+    ext="$(echo $audiofn | rev | cut -d'.' -f1 | rev)"
     echo "$songname - $audiofn"
 
     cp "tmp/$audiofn" "$newdir/$songname.$ext"
