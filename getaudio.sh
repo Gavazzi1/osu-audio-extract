@@ -3,9 +3,9 @@
 rm -f *.osz
 mkdir -p tmp
 rm -f tmp/*
-unzip -q $1
+unzip -q "$1"
 newdir="$(echo $1 | cut -d'.' -f1)"
-mkdir -p $newdir
+mkdir -p "$newdir"
 
 for i in *.osz; do
     unzip -q "$i" -d tmp
