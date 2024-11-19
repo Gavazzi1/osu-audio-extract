@@ -59,7 +59,9 @@ def read_pool():
         ls = line.strip()
         if ls and ls not in modpools:
             result = c.match(ls)
-            out.append(result.groupdict())
+            gd = result.groupdict()
+            gd['title'] = gd['title'].replace('/', '')
+            out.append(gd)
 
     fd.close()
     return out

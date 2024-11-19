@@ -10,8 +10,8 @@ mkdir -p "$newdir"
 for i in *.osz; do
     unzip -q "$i" -d tmp
     audiofn="$(grep -h AudioFilename tmp/*.osu | head -n 1 | rev | cut -d':' -f1 | rev)"
-    audiofn="$(echo $audiofn | awk '{$1=$1};1')"  # remove leading/trailing space
-    audiofn="$(echo $audiofn | rev | cut -c2- | rev)"  # remove trailing \r
+    audiofn="$(echo "$audiofn" | sed 's/^[ \t]*//;s/[ \t]*$//')"  # remove leading/trailing space
+    audiofn="$(echo "$audiofn" | rev | cut -c2- | rev)"  # remove trailing \r
 
     titleline="$(grep -h Title: tmp/*.osu | head -n 1)"
     songname="${titleline##Title:}"
