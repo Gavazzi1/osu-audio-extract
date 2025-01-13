@@ -4,7 +4,7 @@ from mutagen.mp3 import MP3
 from mutagen.oggvorbis import OggVorbis
 import urllib.parse
 
-modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker']
+modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid']
 
 
 class SongInfo:
@@ -25,11 +25,20 @@ def get_audio_tracks():
 
     for fn in os.listdir():
         if fn.lower().endswith('.mp3'):
-            songdata = MP3(fn)
+            nominal_fmt = MP3
+            backup_fmt = OggVorbis
         elif fn.lower().endswith('.ogg'):
-            songdata = OggVorbis(fn)
+            nominal_fmt = OggVorbis
+            backup_fmt = MP3
         else:
             continue
+
+        # 7KWC 2025 edit -- sometimes files might have incorrect extensions
+        # osu! only supports mp3 and ogg, so just try the other if there's an error
+        try:
+            songdata = nominal_fmt(fn)
+        except:
+            songdata = backup_fmt(fn)
 
         title = fn[:-4]
         songlen = int(songdata.info.length)
@@ -46,7 +55,7 @@ def read_pool():
     Then, return list of dicts containing the artist, song title, mappers, and difficulty name
     """
     out = []
-    c = re.compile('(?P<artist>.+) - (?P<title>.+) \((?P<mappers>.+)\) \[(?P<diff_name>.+)]$')
+    c = re.compile('(?P<artist>.+) - (?P<title>.+) \((?P<mappers>.+)\) \[(?P<diff_name>.+)]( \(temporary link\))?$')
 
     try:
         fd = open('pool.txt', 'r')
