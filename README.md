@@ -11,7 +11,7 @@ The audio files will have the same name as the song title in the respective .osu
 
 Within the newly-created folder containing the audio files, you can run the `make_m3u.py` script to create a playlist of the songs in the order they appear in the mappool.
 
-This requires a file in the current working directory called `pool.txt`, which should contain the text description, copied from the osu website, of the mappool contained in the zip file, starting from "No Mod" and ending with the last character in the last line of the mappool (usually the tiebreaker map).
+This requires a file in the current working directory called `pool.txt`, which should contain the text description, copied from the osu website, of the mappool contained in the zip file, starting from "No Mod" (or "Rice" if it's for the MWC) and ending with the last character in the last line of the mappool (usually the tiebreaker map).
 
 If no such text exists, the format of `pool.txt` is `<artist> - <song title> (<mapper>) [<difficulty name>]` for each song, each on its own line in the file.
 
