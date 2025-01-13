@@ -50,7 +50,7 @@ def get_audio_tracks():
 def read_pool():
     """
     Read pool.txt, which contains the contents of simply copy-pasting the week's beatmap listing staring from "No Mod"
-    and ending with the last character of the line containing the tiebreaker map
+    (or "Rice" for MWC) and ending with the last character of the line containing the tiebreaker map
 
     Then, return list of dicts containing the artist, song title, mappers, and difficulty name
     """
@@ -60,8 +60,8 @@ def read_pool():
     try:
         fd = open('pool.txt', 'r')
     except FileNotFoundError:
-        print('Could not find pool.txt. Please add the file and/or ensure you\'re in the same directory the files'
-              'were extracted to')
+        print("Could not find pool.txt. Please add the file and/or ensure you're in the same directory the files"
+              "were extracted to")
         exit(1)
 
     for line in fd:
@@ -82,9 +82,7 @@ if __name__ == '__main__':
 
     filedata = '#EXTM3U\n'
 
-    for i in range(len(pool_info)):
-        beatmap = pool_info[i]
-
+    for beatmap in pool_info:
         if beatmap['title'] not in audio_data:
             print('Could not find {}'.format(beatmap['title']))
             continue
