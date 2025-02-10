@@ -4,7 +4,7 @@ from mutagen.mp3 import MP3
 from mutagen.oggvorbis import OggVorbis
 import urllib.parse
 
-modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid']
+modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid', 'Extreme']
 
 
 class SongInfo:
