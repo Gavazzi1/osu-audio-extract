@@ -4,7 +4,7 @@ from mutagen.mp3 import MP3
 from mutagen.oggvorbis import OggVorbis
 import urllib.parse
 
-modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid', 'Extreme']
+modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid', 'Extreme', 'Mixed Mod']
 
 
 class SongInfo:
@@ -61,7 +61,7 @@ def read_pool():
         fd = open('pool.txt', 'r')
     except FileNotFoundError:
         print("Could not find pool.txt. Please add the file and/or ensure you're in the same directory the files"
-              "were extracted to")
+              " were extracted to")
         exit(1)
 
     for line in fd:
