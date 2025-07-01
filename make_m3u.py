@@ -4,7 +4,10 @@ from mutagen.mp3 import MP3
 from mutagen.oggvorbis import OggVorbis
 import urllib.parse
 
-modpools = ['No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker', 'Rice', 'Long Note', 'Hybrid', 'Extreme', 'Mixed Mod']
+modpools = {'No Mod', 'Hidden', 'Hard Rock', 'Double Time', 'Free Mod', 'Tiebreaker',  # OWC/TWC
+            'Rice', 'Long Note', 'Hybrid', 'Extreme',  # MWC
+            'Mixed Mod'  # CWC
+            }
 
 
 class SongInfo:
@@ -83,15 +86,16 @@ if __name__ == '__main__':
     filedata = '#EXTM3U\n'
 
     for beatmap in pool_info:
-        if beatmap['title'] not in audio_data:
-            print('Could not find {}'.format(beatmap['title']))
+        title = beatmap['title']
+        if title not in audio_data:
+            print('Could not find {}'.format(title))
             continue
 
-        audio_file = audio_data[beatmap['title']]
-        filedata += '#EXTINF:{},{} - {}\n'.format(audio_file.songlen, beatmap['artist'], beatmap['title'])
+        audio_file = audio_data[title]
+        filedata += '#EXTINF:{},{} - {}\n'.format(audio_file.songlen, beatmap['artist'], title)
         filedata += '{}\n'.format(urllib.parse.quote(audio_file.fn))  # must url encode for VLC
 
-    fn = os.getcwd().split('/')[-1] + '.m3u'
+    fn = os.getcwd().split('/')[-1] + '.m3u'  # create filename assuming we are in a directory like "OWC2024_SF"
     with open(fn, 'w') as fd:
         fd.write(filedata)
     fd.close()
