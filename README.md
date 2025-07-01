@@ -5,7 +5,7 @@ Simply run `./getaudio.sh <zip filename>`
 
 All the audio files will be saved to a new directory with the same name as the zip file, but without the zip extension.
 
-The audio files will have the same name as the song title in the respective .osu file, which sometimes breaks things. These have to be handled manually for now, but I patch the code each time to support them.
+The audio files will have the same name as the song title in the respective .osu file, which may occasionally break things depending on the host system. At present, forward slashes are removed to make the script compatible with Linux, but other special characters are kept as-is.
 
 ## M3U File Creation
 
